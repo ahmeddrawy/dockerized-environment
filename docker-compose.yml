@@ -1,0 +1,21 @@
+version: '2.8'
+services:
+  api:
+    build: ./API
+    environment:
+      PGUSER : 'HALAN'
+      PGHOST : 'postgres_master' 
+      PGPASSWORD: 'secretpassword' 
+      PGDATABASE: 'HALAN' 
+      PGPORT: '5432' 
+    depends_on: 
+      - postgres_master
+  postgres_master:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: HALAN
+
+
+
