@@ -5,17 +5,27 @@ services:
     environment:
       PGUSER : 'HALAN'
       PGHOST : 'postgres_master' 
-      PGPASSWORD: 'secretpassword' 
+      PGPASSWORD: 'mypassword' 
       PGDATABASE: 'HALAN' 
       PGPORT: '5432' 
     depends_on: 
       - postgres_master
+    ports: 
+      - "8080:8080"
+    volumes:
+      - ./API:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    container_name: nodejsAPI 
+
+
   postgres_master:
     image: postgres
     restart: always
+    container_name: postgres_master
     environment:
       POSTGRES_PASSWORD: mypassword
       POSTGRES_USER: HALAN
 
-
+volumes:
+  node_modules:
 
